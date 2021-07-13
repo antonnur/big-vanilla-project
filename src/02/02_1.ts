@@ -1,5 +1,3 @@
-import {truncate} from "fs";
-
 export  type StreetType = {
   title: string
 }

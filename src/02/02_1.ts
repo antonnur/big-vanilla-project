@@ -1,3 +1,5 @@
+import {truncate} from "fs";
+
 export  type StreetType = {
   title: string
 }
@@ -9,7 +11,7 @@ export type AddressType = {
 
 export type HouseType = {
   builderAt: number
-  repaired: false
+  repaired: boolean
   address: AddressType
 }
 

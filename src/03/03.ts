@@ -1,5 +1,5 @@
 import {StudentType} from "../02/02";
-import {GovernmentBuildingType, HouseType} from "../02/02_1";
+import {GovernmentBuildingType, HouseType} from "../02/02_2";
 
 export const sum = (a: number, b: number) => {
   return a + b

@@ -7,9 +7,9 @@ export function mult(a: number, b: number) {
 }
 
 export function splitIntoWords(sentences: string) {
-  return sentences.toLowerCase()
-    .split('')
-    .filter(w => w !== '' && w !== '-')
+  const words = sentences.toLowerCase().split(' ')
+
+  return words.filter(w => w !== '' && w !== '-')
     .map(w => w
       .replace('!', '')
       .replace('.', '')

@@ -1,5 +1,6 @@
 import {mult, splitIntoWords, sum} from "./01";
 
+// data
 let a: number
 let b: number
 let c: number

@@ -1,14 +1,13 @@
-import React from "react";
+import React, {ChangeEvent, MouseEvent} from "react";
 
 
 export const User = () => {
-
-  const deleteUser = () => {
-    alert('User have been deleted')
+  const deleteUser = (e: MouseEvent<HTMLButtonElement>) => {
+    alert(e.currentTarget.name)
   }
 
-  const saveUser = () => {
-    alert('User have been saved')
+  const onAgeChanged = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(`age changed: ${e.currentTarget.value}`)
   }
 
   const onNameChanged = () => {
@@ -26,10 +25,10 @@ export const User = () => {
           Dimych
       </textarea>
       <div>
-        <input/>
+        <input onChange={onAgeChanged}/>
       </div>
-      <button onClick={deleteUser}>delete</button>
-      <button onClick={saveUser}>save</button>
+      <button name={'save'} onClick={deleteUser}>x</button>
+      <button name={'delete'} onClick={deleteUser}>x</button>
     </div>
   )
 }

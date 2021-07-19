@@ -11,9 +11,23 @@ export const User = () => {
     alert('User have been saved')
   }
 
+  const onNameChanged = () => {
+    console.log('Name changed')
+  }
+  const focusLostHandler = () => {
+    console.log('Focus lost')
+  }
+
   return (
     <div>
-      Dimych
+      <textarea
+        onChange={onNameChanged}
+        onBlur={focusLostHandler}>
+          Dimych
+      </textarea>
+      <div>
+        <input/>
+      </div>
       <button onClick={deleteUser}>delete</button>
       <button onClick={saveUser}>save</button>
     </div>

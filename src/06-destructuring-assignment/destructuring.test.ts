@@ -24,3 +24,8 @@ test('', () => {
 
   expect(title).toBe('Siberia street')
 })
+
+test('', ()=>{
+  const l1 = props.lessons[0]
+  const l2 = props.lessons[1]
+})

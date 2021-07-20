@@ -15,19 +15,21 @@ export type ManType = {
   }
 }
 
-
 type PropsType = {
   title: string
   man: ManType
 }
 
-export const ManComponent: React.FC<PropsType> = (props) => {
+export const ManComponent: React.FC<PropsType> = ({title, man: {name}}) => {
+  // const {name} = props.man //деструктуризация
+  // const {title, man: {name}} = props   //можно передать сразу в параметры выше
+
   return (
     <div>
-      <h2>{props.title}</h2>
+      <h2>{title}</h2>
       <hr/>
       <div>
-        {props.man.name}
+        {name}
       </div>
     </div>
   )

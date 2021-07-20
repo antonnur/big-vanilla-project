@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 type LessonType = {
   title: string
@@ -21,8 +21,12 @@ type PropsType = {
 }
 
 export const ManComponent: React.FC<PropsType> = ({title, man: {name}}) => {
-  // const {name} = props.man //деструктуризация
-  // const {title, man: {name}} = props   //можно передать сразу в параметры выше
+  /*const {name} = props.man //деструктуризация*/
+  /*const {title, man: {name}} = props   //можно передать сразу в параметры выше*/
+  /*const {title, man, ...restProps} = props   //передаем с помощью ... все остаточные props*/
+
+  const [message, setMessage] = useState<string>('hello')
+
 
   return (
     <div>

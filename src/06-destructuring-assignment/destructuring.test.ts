@@ -15,7 +15,7 @@ beforeEach(() => {
   }
 })
 
-test('', () => {
+test('Testing one', () => {
   const {age, lessons} = props
   const {title} = props.address.street
 
@@ -25,7 +25,28 @@ test('', () => {
   expect(title).toBe('Siberia street')
 })
 
-test('', ()=>{
+test('Testing two', () => {
   const l1 = props.lessons[0]
   const l2 = props.lessons[1]
+
+  expect(l1.title).toBe('1')
+  expect(l2.title).toBe('2')
+
+  //деструктурирование массива
+  /*const [ls1, ls2] = props.lessons*/
+
+  //достаем остаточные объекты массива после ls1
+  /*const [ls1, ...restLessons] = props.lessons*/
+
+  //если нужен только третий элемент, добавляем запятые (с момощью запятых пропускаем объекты)
+  /*const [,,ls2] =props.lessons*/
+
+  /* expect(ls1.title).toBe('1')
+   expect(ls2.title).toBe('2')*/
+
+  const [, ls2, ...restLesson] = props.lessons
+
+  expect(ls2.title).toBe('2')
+  expect(restLesson.length).toBe(1)
+  expect(restLesson[0].title).toBe('3')
 })

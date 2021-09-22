@@ -6,7 +6,7 @@ function increaseAge(u: UserType) {
 type UserType = {
   name: string
   age: number
-  address: {title: string}
+  address: { title: string }
 }
 
 test('Reference type test', () => {
@@ -55,7 +55,7 @@ test('Array reference test', () => {
 
 test('Reference type test', () => {
 
-  const address ={
+  const address = {
     title: 'New Ur'
   }
 
@@ -67,7 +67,7 @@ test('Reference type test', () => {
 
   // let addr = user.address
 
-  let UserNew: UserType ={
+  let UserNew: UserType = {
     name: 'Natasha',
     age: 30,
     address: address
@@ -81,7 +81,7 @@ test('Reference type test', () => {
 
 test('Reference type array test', () => {
 
-  const address ={
+  const address = {
     title: 'New Ur'
   }
 
@@ -91,7 +91,7 @@ test('Reference type array test', () => {
     address: address
   }
 
-  let user_2: UserType ={
+  let user_2: UserType = {
     name: 'Natasha',
     age: 30,
     address: address

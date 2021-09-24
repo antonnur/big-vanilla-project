@@ -1,11 +1,11 @@
-import {makeHairstyle, UserType, UserWithLaptopType} from "./10_01";
+import {makeHairstyle, moveUser, UserType, UserWithLaptopType} from "./10_01";
 
 test('reference type test', () => {
   let user: UserType = {
     name: 'Nina',
     hair: 32,
     address: {
-      title: 'Minsk'
+      city: 'Minsk'
     }
   }
 
@@ -21,7 +21,8 @@ test('change address', () => {
     name: 'Nina',
     hair: 32,
     address: {
-      title: 'Minsk'
+      city: 'Minsk',
+      house: 12
     },
     laptop: {
       title: 'Asus'
@@ -33,4 +34,6 @@ test('change address', () => {
 
   expect(user).not.toBe(movedUser)
   expect(user.address).not.toBe(movedUser.address)
-  expect(movedUser.address.title).toBe('Kiev')
+  expect(user.laptop).toBe(movedUser.laptop)
+  expect(movedUser.address.city).toBe('Kiev')
+})

@@ -1,7 +1,7 @@
 export type UserType = {
   name: string
   hair: number
-  address: {city: string, house?: number}
+  address: { city: string, house?: number }
 }
 
 export type LaptopType = {
@@ -9,6 +9,10 @@ export type LaptopType = {
 }
 export type UserWithLaptopType = UserType & {   // & - и
   laptop: LaptopType
+}
+
+export type UserWithBooksType = UserType & {   // & - и
+  books: string[]
 }
 
 export function makeHairstyle(u: UserType, power: number) {
@@ -22,13 +26,26 @@ export function makeHairstyle(u: UserType, power: number) {
 }
 
 export function moveUser(u: UserWithLaptopType, city: string) {
-  const copy = {
+  return {
     ...u,
-  }
-    copy.address = {
-    ...copy.address,
+    address: {
+      ...u.address,
       city: city
+    }
   }
 
-  return copy
+  /*  copy.address = {
+    ...copy.address,
+      city: city
+  }*/
+}
+
+export function upgradeUserLaptop(u: UserWithLaptopType, laptop: string) {
+  return {
+    ...u,
+    laptop: {
+      ...u.laptop,
+      title: laptop
+    }
+  }
 }

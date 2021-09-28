@@ -40,6 +40,16 @@ export function moveUser(u: UserWithLaptopType, city: string) {
   }*/
 }
 
+export function moveUserToOtherHouse(u: UserWithLaptopType & UserWithBooksType, house: number) {
+  return {
+    ...u,
+    address: {
+      ...u.address,
+      house: house
+    }
+  }
+}
+
 export function upgradeUserLaptop(u: UserWithLaptopType, laptop: string) {
   return {
     ...u,
@@ -47,5 +57,25 @@ export function upgradeUserLaptop(u: UserWithLaptopType, laptop: string) {
       ...u.laptop,
       title: laptop
     }
+  }
+}
+
+export function addNewBooksToUser(u: UserWithLaptopType & UserWithBooksType, newBook: string) {
+  return {
+    ...u,
+    books: [...u.books, newBook]
+  }
+  //const copy = {
+  //  ...u,
+  //  books: [...u.books]
+  // }
+  //copy.books.push(newBooks)
+  //return copy
+}
+
+export function updateBook(u: UserWithLaptopType & UserWithBooksType, newBook: string) {
+  return {
+    ...u,
+    books: [...u.books, newBook]
   }
 }

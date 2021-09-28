@@ -1,4 +1,8 @@
-import {makeHairstyle, moveUser, upgradeUserLaptop, UserType, UserWithLaptopType} from "./10_01";
+import {
+  addNewBooksToUser,
+  makeHairstyle, moveUser, moveUserToOtherHouse, updateBook, upgradeUserLaptop, UserType, UserWithBooksType,
+  UserWithLaptopType
+} from "./10_01";
 
 test('reference type test', () => {
   let user: UserType = {
@@ -37,7 +41,7 @@ test('change address', () => {
   expect(movedUser.address.city).toBe('Kiev')
 })
 
-test('upgrade laptop to macbook', () => {
+test('upgrade laptop to MacBook', () => {
   let user: UserWithLaptopType = {
     name: 'Nina',
     hair: 32,
@@ -50,11 +54,80 @@ test('upgrade laptop to macbook', () => {
     }
   }
 
-  const userCopy = upgradeUserLaptop(user, 'Macbook')
+  const userCopy = upgradeUserLaptop(user, 'MacBook')
 
   expect(user).not.toBe(userCopy)
   expect(user.address).toBe(userCopy.address)
   expect(user.laptop).not.toBe(userCopy.laptop)
-  expect(userCopy.laptop.title).toBe('Macbook')
+  expect(userCopy.laptop.title).toBe('MacBook')
   expect(user.laptop.title).toBe('Asus')
+})
+
+test('upgrade house to number', () => {
+  let user: UserWithLaptopType & UserWithBooksType = {
+    name: 'Nina',
+    hair: 32,
+    address: {
+      city: 'Minsk',
+      house: 12
+    },
+    laptop: {
+      title: 'Asus'
+    },
+    books: ['css', 'html', 'js', 'react']
+  }
+
+  const userCopy = moveUserToOtherHouse(user, 22)
+
+  expect(user).not.toBe(userCopy)
+  expect(user.books).toBe(userCopy.books)
+  expect(user.laptop).toBe(userCopy.laptop)
+  expect(user.address).not.toBe(userCopy.address)
+  expect(userCopy.address.house).toBe(22)
+})
+
+test('add new book to user', () => {
+  let user: UserWithLaptopType & UserWithBooksType = {
+    name: 'Nina',
+    hair: 32,
+    address: {
+      city: 'Minsk',
+      house: 12
+    },
+    laptop: {
+      title: 'Asus'
+    },
+    books: ['css', 'html', 'js', 'react']
+  }
+
+  const userCopy = addNewBooksToUser(user, 'ts')
+
+  expect(user).not.toBe(userCopy)
+  expect(user.laptop).toBe(userCopy.laptop)
+  expect(user.books).not.toBe(userCopy.books)
+  expect(userCopy.books[4]).toBe('ts')
+  expect(user.books.length).toBe(4)
+})
+
+test('update js to ts', () => {
+  let user: UserWithLaptopType & UserWithBooksType = {
+    name: 'Nina',
+    hair: 32,
+    address: {
+      city: 'Minsk',
+      house: 12
+    },
+    laptop: {
+      title: 'Asus'
+    },
+    books: ['css', 'html', 'js', 'react']
+  }
+
+  const userCopy = updateBook(user, 'js', 'ts')
+
+  expect(user).not.toBe(userCopy)
+  expect(user.laptop).toBe(userCopy.laptop)
+  expect(user.books).not.toBe(userCopy.books)
+  expect(userCopy.books[2]).toBe('ts')
+  expect(user.books.length).toBe(4)
 })

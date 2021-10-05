@@ -14,6 +14,9 @@ export type UserWithLaptopType = UserType & {   // & - и
 export type UserWithBooksType = UserType & {   // & - и
   books: string[]
 }
+export type WithCompaniesType = {
+  companies: { id: number, title: string }[]
+}
 
 export function makeHairstyle(u: UserType, power: number) {
   const copy = {
@@ -34,10 +37,13 @@ export function moveUser(u: UserWithLaptopType, city: string) {
     }
   }
 
-  /*  copy.address = {
-    ...copy.address,
-      city: city
-  }*/
+  /*const copy = {
+      ...u,
+      address: {
+        ...u.address,
+        city: city
+  }
+  return copy*/
 }
 
 export function moveUserToOtherHouse(u: UserWithLaptopType & UserWithBooksType, house: number) {
@@ -65,17 +71,42 @@ export function addNewBooksToUser(u: UserWithLaptopType & UserWithBooksType, new
     ...u,
     books: [...u.books, newBook]
   }
-  //const copy = {
-  //  ...u,
-  //  books: [...u.books]
-  // }
-  //copy.books.push(newBooks)
-  //return copy
+  /* аналогичная запись
+  const copy = {
+    ...u,
+    books: [...u.books]
+  }
+  copy.books.push(newBooks) //добовляем в массив
+  return copy*/
 }
 
-export function updateBook(u: UserWithLaptopType & UserWithBooksType, newBook: string) {
-  return {
-    ...u,
-    books: [...u.books, newBook]
-  }
+export const updateBook = (u: UserWithLaptopType & UserWithBooksType, oldBook: string, newBook: string) => ({
+  ...u,
+  books: u.books.map(b => b === oldBook ? newBook : b)
+})
+/*const copy = {
+  ...u,
+  books: u.books.map(b => b === oldBook ? newBook : b)
 }
+return copy*/
+
+export const removeBook = (u: UserWithLaptopType & UserWithBooksType, bookForDelete: string) => ({
+  ...u,
+  books: u.books.filter(b => b !== bookForDelete)
+})
+
+export const updateCompanyTitle = (u: WithCompaniesType,
+                                   companyId: number,
+                                   newTitle: string) => ({
+  ...u,
+  companies: u.companies.map(c => c.id === companyId ? {...c, title: newTitle} : c)
+})
+/*const copy :WithCompaniesType = {
+  ...u,
+  companies: u.companies.map(c => {
+    if (c.id === companyId) {
+      return {...c, title: newTitle}
+    } else return c
+  })
+}
+return copy*/

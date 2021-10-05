@@ -1,7 +1,8 @@
 import {
   addNewBooksToUser,
-  makeHairstyle, moveUser, moveUserToOtherHouse, updateBook, upgradeUserLaptop, UserType, UserWithBooksType,
-  UserWithLaptopType
+  makeHairstyle, moveUser, moveUserToOtherHouse, removeBook, updateBook, updateCompanyTitle, upgradeUserLaptop,
+  UserType, UserWithBooksType,
+  UserWithLaptopType, WithCompaniesType
 } from "./10_01";
 
 test('reference type test', () => {
@@ -130,4 +131,50 @@ test('update js to ts', () => {
   expect(user.books).not.toBe(userCopy.books)
   expect(userCopy.books[2]).toBe('ts')
   expect(user.books.length).toBe(4)
+})
+
+test('remove js book', () => {
+  let user: UserWithLaptopType & UserWithBooksType = {
+    name: 'Nina',
+    hair: 32,
+    address: {
+      city: 'Minsk',
+      house: 12
+    },
+    laptop: {
+      title: 'Asus'
+    },
+    books: ['css', 'html', 'js', 'react'],
+
+  }
+
+  const userCopy = removeBook(user, 'js')
+
+  expect(user).not.toBe(userCopy)
+  expect(user.laptop).toBe(userCopy.laptop)
+  expect(user.books).not.toBe(userCopy.books)
+  expect(userCopy.books[2]).toBe('react')
+  expect(userCopy.books.length).toBe(3)
+})
+
+test('remove js book', () => {
+  let user: UserWithLaptopType & WithCompaniesType = {
+    name: 'Nina',
+    hair: 32,
+    address: {
+      city: 'Minsk',
+      house: 12
+    },
+    laptop: {
+      title: 'Asus'
+    },
+    companies: [{id: 1, title: 'Епам'},{id: 2, title: 'IT-Incubator'}]
+  }
+
+  const userCopy = updateCompanyTitle(user, 1, 'EPAM') as UserWithLaptopType & WithCompaniesType
+
+  expect(user).not.toBe(userCopy)
+  expect(user.address).toBe(userCopy.address)
+  expect(user.companies).not.toBe(userCopy.companies)
+  expect(userCopy.companies[0].title).toBe('EPAM')
 })

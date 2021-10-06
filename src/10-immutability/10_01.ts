@@ -14,8 +14,10 @@ export type UserWithLaptopType = UserType & {   // & - и
 export type UserWithBooksType = UserType & {   // & - и
   books: string[]
 }
+
+type CompanyType = { id: number, title: string }
 export type WithCompaniesType = {
-  companies: { id: number, title: string }[]
+  companies: Array<CompanyType>
 }
 
 export function makeHairstyle(u: UserType, power: number) {
@@ -110,3 +112,13 @@ export const updateCompanyTitle = (u: WithCompaniesType,
   })
 }
 return copy*/
+
+export const updateCompanyTitle2 = (companies: { [key: string]: Array<CompanyType> },
+                                    userName: string,
+                                    companyId: number,
+                                    newTitle: string) => {
+  let companyCopy = {...companies}
+  companyCopy[userName] = companyCopy[userName].map(c => c.id === companyId ? {...c, title: newTitle} : c)
+
+  return companyCopy
+}
